@@ -9,9 +9,9 @@ require_once $config->application->vendorDir . "autoload.php";
 
 $loader->registerNamespaces(
     [
-        'Certee\\Models' => $config->application->modelsDir,
-        'Certee\\Controllers' => $config->application->controllersDir,
-        'Certee\\Services' => $config->application->servicesDir,
-        'Certee\\Library' => $config->application->libraryDir
+        'Ekranj\\Models' => $config->application->modelsDir,
+        'Ekranj\\Controllers' => $config->application->controllersDir,
+        'Ekranj\\Services' => $config->application->servicesDir,
+        'Ekranj\\Library' => $config->application->libraryDir
     ]
 )->register();
