@@ -1,0 +1,47 @@
+#!/bin/bash
+
+CD=${WORKDIR:-"/"};
+CMD='';
+
+case $1 in
+    "all" )
+        CMD="./qa cv      &&
+            ./qa cs       &&
+            ./qa cp";
+        ;;
+
+    "cv" )
+        CMD="composer validate";
+        ;;
+
+    "lint:php" )
+        CMD="./vendor/bin/parallel-lint app/ public/";
+        ;;
+
+    "md" )
+        CMD='./vendor/bin/phpmd app text codesize,unusedcode,naming,controversial --strict';
+        ;;
+
+    "cs" )
+        CMD="./vendor/bin/phpcs -n -p --standard=PSR1,PSR2 --ignore=migrations/* app public"
+        ;;
+
+    "cp" )
+        CMD="./vendor/bin/phpcpd --progress --exclude=migrations/ -n app/ public/"
+        ;;
+
+    * )
+        echo "Taskee API QA toolchain"
+        echo ""
+        echo "Commands:"
+        echo "  all        Runs all tests"
+        echo "  cv         composer.json validate(composer validate)"
+        echo "  lint:php   PHP syntax check (php's lint)"
+        echo "  cs         PHP coding standards (phpcs)"
+        echo "  cp         PHP copy/paste detector (phpcpd)"
+        echo "  md         PHP mess detector (phpmd)"
+        echo "  help       This text"
+        exit 0;
+esac
+
+eval ${CMD};

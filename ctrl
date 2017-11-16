@@ -1,0 +1,35 @@
+#!/bin/bash
+
+CD=${WORKDIR:-"/"};
+CMD='';
+
+case "$1 $2" in
+    'docs generate' )
+        CMD="./vendor/bin/swagger -o public app"
+        ;;
+    'migration generate' )
+        CMD="phalcon migration generate"
+        ;;
+    'migration run' )
+        CMD="phalcon migration run"
+        ;;
+    * )
+        cat << EOF
+Usage: ctrl command
+
+Available subcommands:
+     docs       generate          Generate swagger documentation
+     migration  generate          Generate database migration version with phalcon devtools
+     migration  run               Create database according to migration
+EOF
+        exit 0
+        ;;
+esac
+
+
+if [ "$CMD" == "" ]; then
+    echo "Invalid command: $1 $2";
+    exit 1;
+fi;
+
+eval ${CMD};

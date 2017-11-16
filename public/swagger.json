@@ -1,0 +1,2102 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Ekranj REST API",
+        "version": "0.1"
+    },
+    "host": "ekranj.local.si",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/accommodation": {
+            "get": {
+                "tags": [
+                    "accommodation"
+                ],
+                "summary": "Get list of accommodations",
+                "responses": {
+                    "200": {
+                        "description": "Accommodation list",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/AccommodationResponse"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "accommodation"
+                ],
+                "summary": "Create a new accommodation",
+                "parameters": [
+                    {
+                        "name": "accommodation",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/AccommodationValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Accommodation object",
+                        "schema": {
+                            "$ref": "#/definitions/AccommodationResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/accommodation/{id}": {
+            "get": {
+                "tags": [
+                    "accommodation"
+                ],
+                "summary": "Get accommodation by ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Accommodation object",
+                        "schema": {
+                            "$ref": "#/definitions/AccommodationResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "accommodation"
+                ],
+                "summary": "Update accommodation data",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "accommodation",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/AccommodationValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accommodation object",
+                        "schema": {
+                            "$ref": "#/definitions/AccommodationResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "accommodation"
+                ],
+                "summary": "Delete an accommodation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Accommodation deleted"
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/accommodation/reorder": {
+            "post": {
+                "tags": [
+                    "accommodation"
+                ],
+                "summary": "Reorder accommodation list",
+                "parameters": [
+                    {
+                        "name": "Positions",
+                        "in": "body",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Positions saved"
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/accommodation-type": {
+            "get": {
+                "tags": [
+                    "accommodation_type"
+                ],
+                "summary": "Get list of accommodation types",
+                "responses": {
+                    "200": {
+                        "description": "Accommodation types list",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/AccommodationTypeResponse"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "accommodation_type"
+                ],
+                "summary": "Create a new accommodation type",
+                "parameters": [
+                    {
+                        "name": "AccommodationType",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/AccommodationTypeValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "AccommodationType object",
+                        "schema": {
+                            "$ref": "#/definitions/AccommodationTypeResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/accommodation-type/{id}": {
+            "get": {
+                "tags": [
+                    "accommodation_type"
+                ],
+                "summary": "Get accommodation type by ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "AccommodationType object",
+                        "schema": {
+                            "$ref": "#/definitions/AccommodationTypeResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "accommodation_type"
+                ],
+                "summary": "Update accommodation type data",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "AccommodationType",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/AccommodationTypeValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "AccommodationType object",
+                        "schema": {
+                            "$ref": "#/definitions/AccommodationTypeResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "accommodation_type"
+                ],
+                "summary": "Update accommodation type data",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "AccommodationType",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/AccommodationTypeValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "AccommodationType object",
+                        "schema": {
+                            "$ref": "#/definitions/AccommodationTypeResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "accommodation_type"
+                ],
+                "summary": "Delete an accommodation type",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Accommodation type deleted"
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/accommodation-type/reorder": {
+            "post": {
+                "tags": [
+                    "accommodation_type"
+                ],
+                "summary": "Reorder accommodation list",
+                "parameters": [
+                    {
+                        "name": "Positions",
+                        "in": "body",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Positions saved"
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/booking/find": {
+            "post": {
+                "tags": [
+                    "booking"
+                ],
+                "summary": "Find hotels for input params",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/SearchRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Booking search result",
+                        "schema": {
+                            "items": {
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/booking/pre-request": {
+            "post": {
+                "tags": [
+                    "booking"
+                ],
+                "summary": "Find hotels for input params",
+                "parameters": [
+                    {
+                        "name": "pricing",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/BookingRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Booking request result",
+                        "schema": {
+                            "items": {
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pricing": {
+            "get": {
+                "tags": [
+                    "pricing"
+                ],
+                "summary": "Get full pricelist",
+                "responses": {
+                    "200": {
+                        "description": "Price list",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PricingResponse"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "pricing"
+                ],
+                "summary": "Create a new pricing rule",
+                "parameters": [
+                    {
+                        "name": "pricing",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/PricingValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Pricing object",
+                        "schema": {
+                            "$ref": "#/definitions/PricingResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pricing/{id}": {
+            "get": {
+                "tags": [
+                    "pricing"
+                ],
+                "summary": "Get pricing by ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pricing object",
+                        "schema": {
+                            "$ref": "#/definitions/PricingResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "pricing"
+                ],
+                "summary": "Update room data",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pricing",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/PricingValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Pricing object",
+                        "schema": {
+                            "$ref": "#/definitions/PricingResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "pricing"
+                ],
+                "summary": "Delete a pricing rule",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Pricing deleted"
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/room": {
+            "get": {
+                "tags": [
+                    "room"
+                ],
+                "summary": "Get list of rooms",
+                "responses": {
+                    "200": {
+                        "description": "Room list",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RoomResponse"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "room"
+                ],
+                "summary": "Create a new room",
+                "parameters": [
+                    {
+                        "name": "room",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/RoomValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Room object",
+                        "schema": {
+                            "$ref": "#/definitions/RoomResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/room/{id}": {
+            "get": {
+                "tags": [
+                    "room"
+                ],
+                "summary": "Get room by ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Room object",
+                        "schema": {
+                            "$ref": "#/definitions/RoomResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "room"
+                ],
+                "summary": "Update room data",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "room",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/RoomValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Room object",
+                        "schema": {
+                            "$ref": "#/definitions/RoomResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "room"
+                ],
+                "summary": "Delete a Room",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Room deleted"
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/createBulk/{accommodation_id}/{accommodation_type_id}/{number_of_rooms}": {
+            "get": {
+                "tags": [
+                    "room"
+                ],
+                "summary": "Create multiple rooms of type",
+                "parameters": [
+                    {
+                        "name": "accommodation_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "room_type_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "number_of_rooms",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Rooms created"
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/room-type": {
+            "get": {
+                "tags": [
+                    "room_type"
+                ],
+                "summary": "Get list of room types",
+                "responses": {
+                    "200": {
+                        "description": "room types list",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RoomTypeResponse"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "room_type"
+                ],
+                "summary": "Create a new room type",
+                "parameters": [
+                    {
+                        "name": "RoomType",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/RoomTypeValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "RoomType object",
+                        "schema": {
+                            "$ref": "#/definitions/RoomTypeResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/room-type/{id}": {
+            "get": {
+                "tags": [
+                    "room_type"
+                ],
+                "summary": "Get room type by ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "RoomType object",
+                        "schema": {
+                            "$ref": "#/definitions/RoomTypeResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "room_type"
+                ],
+                "summary": "Update room type data",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "RoomType",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/RoomTypeValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "RoomType object",
+                        "schema": {
+                            "$ref": "#/definitions/RoomTypeResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "room_type"
+                ],
+                "summary": "Delete an room type",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "room type deleted"
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/room-type/reorder": {
+            "post": {
+                "tags": [
+                    "room_type"
+                ],
+                "summary": "Reorder room type list",
+                "parameters": [
+                    {
+                        "name": "Positions",
+                        "in": "body",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Positions saved"
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/service": {
+            "get": {
+                "tags": [
+                    "service"
+                ],
+                "summary": "Get list of services",
+                "responses": {
+                    "200": {
+                        "description": "Service list",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ServiceResponse"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "service"
+                ],
+                "summary": "Create a new service",
+                "parameters": [
+                    {
+                        "name": "Service",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/ServiceValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Service object",
+                        "schema": {
+                            "$ref": "#/definitions/ServiceResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/service/{id}": {
+            "get": {
+                "tags": [
+                    "service"
+                ],
+                "summary": "Get service by ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service object",
+                        "schema": {
+                            "$ref": "#/definitions/ServiceResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "service"
+                ],
+                "summary": "Update service data",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Service",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/ServiceValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Service object",
+                        "schema": {
+                            "$ref": "#/definitions/ServiceResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "service"
+                ],
+                "summary": "Delete a service",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Service deleted"
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/service/reorder": {
+            "post": {
+                "tags": [
+                    "service"
+                ],
+                "summary": "Reorder service list",
+                "parameters": [
+                    {
+                        "name": "Positions",
+                        "in": "body",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Positions saved"
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Check user credentials and return token",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Params",
+                        "in": "body",
+                        "schema": {}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login successful"
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get authenticated user",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "User object",
+                        "schema": {
+                            "$ref": "#/definitions/UserResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Unknown error",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "BookingRequest": {
+            "properties": {
+                "accommodation_id": {
+                    "type": "string"
+                },
+                "arrival": {
+                    "type": "string"
+                },
+                "departure": {
+                    "type": "string"
+                },
+                "adults": {
+                    "type": "string"
+                },
+                "children": {
+                    "type": "string"
+                },
+                "customer": {
+                    "properties": {
+                        "person_type": {
+                            "type": "number"
+                        },
+                        "company": {
+                            "type": "string"
+                        },
+                        "vat_id": {
+                            "type": "string"
+                        },
+                        "firstname": {
+                            "type": "string"
+                        },
+                        "lastname": {
+                            "type": "string"
+                        },
+                        "address": {
+                            "type": "string"
+                        },
+                        "city": {
+                            "type": "string"
+                        },
+                        "zip": {
+                            "type": "string"
+                        },
+                        "country": {
+                            "type": "string"
+                        },
+                        "phone": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "rooms": {
+                    "type": "array",
+                    "items": {
+                        "properties": {
+                            "room_type_id": {
+                                "type": "string"
+                            },
+                            "service_id": {
+                                "type": "string"
+                            },
+                            "guests": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "firstname": {
+                                            "type": "string"
+                                        },
+                                        "lastname": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "services": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "service_id": {
+                                            "type": "string"
+                                        },
+                                        "quantity": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "SearchRequest": {
+            "properties": {
+                "arrival": {
+                    "type": "string"
+                },
+                "departure": {
+                    "type": "string"
+                },
+                "accommodation_type": {
+                    "type": "string"
+                },
+                "adults": {
+                    "type": "number"
+                },
+                "children": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "AccommodationResponse": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "accommodation_type": {
+                    "type": "object"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "custom_id": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "date_from": {
+                    "type": "string"
+                },
+                "date_until": {
+                    "type": "string"
+                },
+                "position": {
+                    "type": "integer"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_modified": {
+                    "type": "string"
+                },
+                "user_modified": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "AccommodationTypeResponse": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "position": {
+                    "type": "integer"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_modified": {
+                    "type": "string"
+                },
+                "user_modified": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "PricingResponse": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "accommodation": {
+                    "type": "object"
+                },
+                "room_type": {
+                    "type": "object"
+                },
+                "service": {
+                    "type": "object"
+                },
+                "date_from": {
+                    "type": "string"
+                },
+                "date_until": {
+                    "type": "string"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_modified": {
+                    "type": "string"
+                },
+                "user_modified": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "RoomResponse": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "accommodation": {
+                    "type": "object"
+                },
+                "room_type": {
+                    "type": "object"
+                },
+                "room_number": {
+                    "type": "integer"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_modified": {
+                    "type": "string"
+                },
+                "user_modified": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "RoomTypeResponse": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "public_title": {
+                    "type": "string"
+                },
+                "persons": {
+                    "type": "integer"
+                },
+                "additional_persons": {
+                    "type": "integer"
+                },
+                "position": {
+                    "type": "integer"
+                },
+                "room_variant": {
+                    "type": "integer"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_modified": {
+                    "type": "string"
+                },
+                "user_modified": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ServiceResponse": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "custom_id": {
+                    "type": "string"
+                },
+                "service_type": {
+                    "type": "integer"
+                },
+                "vat_type": {
+                    "type": "integer"
+                },
+                "position": {
+                    "type": "integer"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_modified": {
+                    "type": "string"
+                },
+                "user_modified": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "UserResponse": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "number"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "firstname": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "string"
+                },
+                "last_login": {
+                    "type": "string"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_modified": {
+                    "type": "string"
+                },
+                "user_modified": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "AccommodationValidation": {
+            "properties": {
+                "accommodation_type_id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "custom_id": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "date_from": {
+                    "type": "string"
+                },
+                "date_until": {
+                    "type": "string"
+                },
+                "position": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "AccommodationTypeValidation": {
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "position": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "PricingValidation": {
+            "properties": {
+                "accommodation_id": {
+                    "type": "string"
+                },
+                "room_type_id": {
+                    "type": "string"
+                },
+                "service_id": {
+                    "type": "string"
+                },
+                "date_from": {
+                    "type": "string"
+                },
+                "date_until": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "RoomValidation": {
+            "properties": {
+                "accommodation_id": {
+                    "type": "string"
+                },
+                "room_type_id": {
+                    "type": "string"
+                },
+                "room_number": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "RoomTypeValidation": {
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "persons": {
+                    "type": "integer"
+                },
+                "additional_persons": {
+                    "type": "integer"
+                },
+                "position": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "ServiceValidation": {
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "custom_id": {
+                    "type": "string"
+                },
+                "service_type": {
+                    "type": "integer"
+                },
+                "position": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "Accommodation": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "tenant_id": {
+                    "type": "string"
+                },
+                "accommodation_type_id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "custom_id": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "position": {
+                    "type": "integer"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_updated": {
+                    "type": "string"
+                },
+                "user_updated": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "Accommodation"
+            }
+        },
+        "AccommodationType": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "tenant_id": {
+                    "type": "string"
+                },
+                "accommodation_type_id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "position": {
+                    "type": "integer"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_updated": {
+                    "type": "string"
+                },
+                "user_updated": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "AccommodationType"
+            }
+        },
+        "Pricing": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "tenant_id": {
+                    "type": "string"
+                },
+                "accommodation_id": {
+                    "type": "string"
+                },
+                "room_type_id": {
+                    "type": "string"
+                },
+                "service_id": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "date_from": {
+                    "type": "string"
+                },
+                "date_until": {
+                    "type": "string"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_updated": {
+                    "type": "string"
+                },
+                "user_updated": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "Pricing"
+            }
+        },
+        "Room": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "tenant_id": {
+                    "type": "string"
+                },
+                "accommodation_id": {
+                    "type": "string"
+                },
+                "room_type_id": {
+                    "type": "string"
+                },
+                "room_number": {
+                    "type": "integer"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_updated": {
+                    "type": "string"
+                },
+                "user_updated": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "Room"
+            }
+        },
+        "RoomType": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "tenant_id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "public_title": {
+                    "type": "string"
+                },
+                "persons": {
+                    "type": "integer"
+                },
+                "additional_persons": {
+                    "type": "integer"
+                },
+                "room_variant": {
+                    "type": "integer"
+                },
+                "position": {
+                    "type": "integer"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_updated": {
+                    "type": "string"
+                },
+                "user_updated": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "RoomType"
+            }
+        },
+        "Service": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "tenant_id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "custom_id": {
+                    "type": "string"
+                },
+                "service_type": {
+                    "type": "number"
+                },
+                "vat_type": {
+                    "type": "number"
+                },
+                "position": {
+                    "type": "integer"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_updated": {
+                    "type": "string"
+                },
+                "user_updated": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "Service"
+            }
+        },
+        "User": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "tenant_id": {
+                    "type": "string"
+                },
+                "is_global": {
+                    "type": "boolean"
+                },
+                "role": {
+                    "type": "integer"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "firstname": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "boolean"
+                },
+                "recovery_token": {
+                    "type": "string"
+                },
+                "last_login": {
+                    "type": "string"
+                },
+                "date_created": {
+                    "type": "string"
+                },
+                "user_created": {
+                    "type": "string"
+                },
+                "date_updated": {
+                    "type": "string"
+                },
+                "user_updated": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "User"
+            }
+        }
+    }
+}
