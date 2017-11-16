@@ -7,12 +7,11 @@ $loader = new \Phalcon\Loader();
 
 require_once $config->application->vendorDir . "autoload.php";
 
-$namespaces = [
-        'Ekranj\\Controllers' => $config->application->controllersDir,
-        'Ekranj\\Services' => $config->application->servicesDir,
-        'Ekranj\\Library' => $config->application->libraryDir
-    ];
-$models_controller = 'Ekranj\\Models';
-$namespaces[$models_controller] = $config->application->modelsDir;
-
-$loader->registerNamespaces($namespaces)->register();
+$loader->registerNamespaces(
+    [
+        'Certee\\Models' => $config->application->modelsDir,
+        'Certee\\Controllers' => $config->application->controllersDir,
+        'Certee\\Services' => $config->application->servicesDir,
+        'Certee\\Library' => $config->application->libraryDir
+    ]
+)->register();

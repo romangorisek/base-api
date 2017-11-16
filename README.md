@@ -2,6 +2,8 @@
 
 basic api structure with phalcon micro framework
 
+code in this repo should cover only features that are 100% common to all phalcon api projects
+
 user registration, login added (needs users table in DB - see user model for columns)
 
 simple ACL
