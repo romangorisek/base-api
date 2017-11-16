@@ -22,4 +22,5 @@ www/
 ```
 to add a new vesion just copy a folder of a version you want to have as starting point
 
-on first setup of a new project search for "ekranj" in all folders and replace with new projcet name, set config files in te etc folder, create users table
+**on first setup of a new project search for "ekranj" in all folders and replace with new projcet name, set config files in te etc folder, create users table**
+
