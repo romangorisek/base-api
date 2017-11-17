@@ -22,7 +22,8 @@ $config = new Config([
         'libraryDir'     => APP_PATH . '/library/',
         'viewsDir'       => APP_PATH . '/views/',
         'baseUri'        => '/lytee-api/',
-        'vendorDir'      => APP_PATH . '/../../vendor/'
+        'vendorDir'      => APP_PATH . '/../../vendor/',
+        'apiDir'         => APP_PATH . '/../api/'
     ],
     'environment' => 'production',
     'dock' => [
