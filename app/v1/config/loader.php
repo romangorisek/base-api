@@ -12,6 +12,7 @@ $loader->registerNamespaces(
         'Ekranj\\Models' => $config->application->modelsDir,
         'Ekranj\\Controllers' => $config->application->controllersDir,
         'Ekranj\\Services' => $config->application->servicesDir,
-        'Ekranj\\Library' => $config->application->libraryDir
+        'Ekranj\\Library' => $config->application->libraryDir,
+        'Api' => $config->application->apiDir
     ]
 )->register();

@@ -1,6 +1,6 @@
 <?php
 
-use Phalcon\Mvc\Micro\Collection as MicroCollection;
+use Api\MicroCollection;
 use Ekranj\Controllers\UserController;
 
 $user = new MicroCollection();
@@ -9,7 +9,7 @@ $user->setHandler(
     new UserController()
 );
 
-$user->setPrefix("/" . API_VERSION . "/user");
+$user->setPrefix("/user");
 
 /**
  * @SWG\Post(
