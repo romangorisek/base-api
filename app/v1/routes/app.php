@@ -20,21 +20,6 @@ $app->get('/' . API_VERSION, function () {
     echo 'Ekranj REST API ' . API_VERSION;
 });
 
-$app->get('/' . API_VERSION . '/add_roles', function () use ($di) {
-    $user = User::findFirst(['email = "admin"']);
-    // $role = Role::findFirst(['name = "user"']);
-    // $ur = new UserRoles;
-    // $ur->user_id = $user->id;
-    // $ur->role_id = $role->id;
-    // $ur->save();
-    // var_dump($user->email);
-    // var_dump($user);die;
-    $response = new UserResponse();
-    $code = 200;
-    $data = $response->build($user);
-    $di->get('response')->send($code, $data);
-});
-
 $app->notFound(function () use ($app) {
     $app->response->setStatusCode(404, "Not Found")->sendHeaders();
     echo 'Endpoint not found';
