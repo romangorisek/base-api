@@ -18,6 +18,9 @@ class Acl extends ServiceBase
     public function checkRoute($app)
     {
         $handler = $app->getActiveHandler();
+        if (!is_array($handler)) {
+            return true;
+        }
         $controller = get_class($handler[0]);
         $action = $handler[1];
         if ($this->isAllowed($controller, $action)) {
@@ -28,41 +31,44 @@ class Acl extends ServiceBase
 
     public function isAllowed($controller, $action)
     {
-        $role = $this->getDi()->get('auth')->getUserRole();
-        if ($role == User::ROLE_SUPERADMIN) {
+        $user = $this->getDi()->get('auth')->getUser();
+        if ($user && $user->hasRole(User::ROLE_SUPERADMIN)) {
             return true;
         }
 
         //Insert custom client logic here (from database, tenant extensions..)
-        $actionResult = $this->checkActionAnnotations($controller, $action, $role);
+        $actionResult = $this->checkActionAnnotations($controller, $action, $user);
         if ($actionResult != null) {
             return $actionResult;
         }
-        $controllerResult = $this->checkControllerAnnotations($controller, $role);
+        $controllerResult = $this->checkControllerAnnotations($controller, $user);
         if ($controllerResult != null) {
             return $controllerResult;
         }
         return false;
     }
 
-    public function checkControllerAnnotations($controller, $userRole)
+    public function checkControllerAnnotations($controller, $user)
     {
         $annotations = $this->annotationReader->get($controller)->getClassAnnotations();
-        return $annotations ? $this->checkAnnotationsForAcl($annotations, $userRole) : false;
+        return $annotations ? $this->checkAnnotationsForAcl($annotations, $user) : false;
     }
 
-    public function checkActionAnnotations($controller, $action, $userRole)
+    public function checkActionAnnotations($controller, $action, $user)
     {
         $annotations = $this->annotationReader->getMethod($controller, $action);
-        return $annotations ? $this->checkAnnotationsForAcl($annotations, $userRole) : false;
+        return $annotations ? $this->checkAnnotationsForAcl($annotations, $user) : false;
     }
-
-    private function checkAnnotationsForAcl($annotations, $userRole)
+    
+    private function checkAnnotationsForAcl($annotations, $user)
     {
         if ($annotations->has("Acl")) {
             $annotation = $annotations->get("Acl");
-            $requiredRole = $annotation->getNamedParameter("role");
-            if ((int)$requiredRole <= $userRole) {
+            $requiredRoles = $annotation->getNamedParameter("roles");
+            if (in_array(User::ROLE_GUEST, $requiredRoles)) {
+                return true;
+            }
+            if (!empty(array_intersect($requiredRoles, $user->roles()))) {
                 return true;
             }
             return false;

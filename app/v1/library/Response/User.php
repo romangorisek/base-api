@@ -10,7 +10,7 @@ use Ekranj\Library\Response;
  *   type="object",
  *   @SWG\Property(property="id", type="string"),
  *   @SWG\Property(property="email", type="string"),
- *   @SWG\Property(property="role", type="number"),
+ *   @SWG\Property(property="role", type="array"),
  *   @SWG\Property(property="active", type="string"),
  *   @SWG\Property(property="last_login", type="string"),
  *   @SWG\Property(property="created_on", type="string"),
@@ -26,7 +26,7 @@ class User extends Response
         $output = [
             'id'                => $user->id,
             'email'             => $user->email,
-            'role'              => $user->role,
+            'roles'              => $user->roles(),
             'active'            => $user->active,
             'last_login'        => $user->last_login,
             'created_on'        => $user->created_on,

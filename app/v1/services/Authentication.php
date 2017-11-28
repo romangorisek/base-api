@@ -17,14 +17,6 @@ class Authentication extends ServiceBase
         return $this->user;
     }
 
-    public function getUserRole()
-    {
-        if ($user = $this->getUser()) {
-            return $user->role;
-        }
-        return 0;
-    }
-
     private function getUserFromToken()
     {
         if ($tokenData = $this->getTokenData()) {

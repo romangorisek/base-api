@@ -6,7 +6,7 @@ use Ekranj\Models\User as UserModel;
 use Ekranj\Library\Response\User as UserResponse;
 
 /**
- * @Acl(role=500)
+ * @Acl(roles=["user"])
  */
 class UserController extends BaseController
 {
@@ -28,7 +28,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @Acl(role=0)
+     * @Acl(roles=["guest"])
      */
     public function login()
     {
@@ -50,7 +50,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @Acl(role=0)
+     * @Acl(roles=["guest"])
      */
     public function register()
     {
@@ -60,9 +60,7 @@ class UserController extends BaseController
         $code = 500;
         $data = ['User creation failed'];
 
-        if (! isset($postData['role'])) $postData['role'] = UserModel::ROLE_ADMIN;
-
-        if ($user->save($postData, ['email', 'password', 'role'])) {
+        if ($user->save($postData, ['email', 'password'])) {
             $code = 200;
             $data = ['User successfully created'];
         }

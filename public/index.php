@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 
 define('BASE_PATH', dirname(__DIR__));
 
-require_once BASE_PATH . "/app/versioning.php";
+require_once BASE_PATH . "/app/api/versioning.php";
 
 define('APP_PATH', BASE_PATH . '/app/' . API_VERSION);
 

@@ -3,20 +3,34 @@
 namespace Ekranj\Models;
 
 use Phalcon\Http\Client\Request;
+use Ekranj\Models\Role;
 
 /**
  * @SWG\Definition(type="object", @SWG\Xml(name="User"))
  */
 class User extends BaseModel
 {
-    const ROLE_SUPERADMIN = 1000;
-    const ROLE_ADMIN = 900;
-    const ROLE_USER = 100;
+    const ROLE_SUPERADMIN = "super_admin";
+    const ROLE_ADMIN = "admin";
+    const ROLE_USER = "user";
+    const ROLE_GUEST = "guest";
 
     public function initialize()
     {
         parent::initialize();
         $this->setSource('users');
+
+        $this->hasManyToMany(
+            'id',
+            'Ekranj\Models\UserRoles',
+            'user_id',
+            'role_id',
+            'Ekranj\Models\Role',
+            'id',
+            [
+                'alias' => 'UserRoles',
+            ]
+        );
     }
 
     public function beforeValidationOnCreate()
@@ -57,9 +71,9 @@ class User extends BaseModel
 
     /**
     * @SWG\Property()
-    * @var integer
+    * @var array
     */
-    public $role;
+    public $roles;
     
     /**
      * @SWG\Property()
@@ -112,13 +126,12 @@ class User extends BaseModel
         ]);
     }
 
-    public static function login($email, $password, $role = self::ROLE_ADMIN)
+    public static function login($email, $password)
     {
         $user = self::findFirst([
-            'email = :email: AND active = 1 AND role >= :role:',
+            'email = :email: AND active = 1',
             'bind' => [
-                'email' => $email,
-                'role' => $role
+                'email' => $email
             ]
         ]);
 
@@ -127,5 +140,39 @@ class User extends BaseModel
         }
 
         return false;
+    }
+
+    public function roles()
+    {
+        if (is_array($this->roles)) {
+            return $this->roles;
+        }
+        $roles = [];
+        foreach ($this->userRoles as $role) {
+            $roles[] = $role->name;
+            $childRoles = $this->findChildRoles($role);
+            foreach ($childRoles as $childRole) {
+                if (! in_array($childRole, $roles)) {
+                    $roles[] = $childRole;
+                }
+            }
+        }
+        $this->roles = $roles;
+        return $roles;
+    }
+
+    public function hasRole($role)
+    {
+        return in_array($role, $this->roles());
+    }
+
+    private function findChildRoles($role, $childRoles = [])
+    {
+        if ($role->hasChildRole()) {
+            $childRole = Role::get($role->child_id);
+            $childRoles[] = $childRole->name;
+            $this->findChildRoles($childRole, $childRoles);
+        }
+        return $childRoles;
     }
 }
